@@ -108,9 +108,6 @@
       <button type="submit">Salvar inscrição</button>
       <button type="button" id="clearForm" class="ghost">Limpar formulário</button>
       <button type="button" id="exportCsv" class="ghost">Exportar CSV</button>
-
-      <!-- ❌ REMOVIDO – Botão apagar tudo -->
-      <!-- <button type="button" id="clearAll" class="ghost">Apagar todas inscrições</button> -->
     </div>
   </form>
 
@@ -127,7 +124,7 @@
   <footer>...</footer>
 
   <script>
-    const WEBHOOK_URL = 					"https://script.google.com/macros/s/AKfycbwja1snTnaQTLXQ5ctTGI8KHBxjCQAnYOMi4sorHV7M02o61KwZh8xQc93laaZHj8Od/exec";
+    const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbx_K1fuwHAysGC_aAqG_rjA0bff7WCcfjmN8KiPOz3asKgABPaQi79lso0L_X7OG4eo/exec"; // seu Web App já publicado
     const STORAGE_KEY = 'amigo_oculto_entries_v1';
 
     const form = document.getElementById('participantForm');
@@ -140,7 +137,6 @@
     }
     function saveEntries(x){ localStorage.setItem(STORAGE_KEY, JSON.stringify(x)); }
 
-    // ⭐ FUNÇÃO NOVA — transforma wishlist em lista <ul>
     function formatWishlist(text){
       if(!text) return '';
       const items = text.split(/\n+/).map(i=>i.trim()).filter(Boolean);
@@ -173,12 +169,8 @@
           <td>${escapeHtml(e.name)}</td>
           <td>${escapeHtml(e.shoe||'')}</td>
           <td>${escapeHtml(e.size||'')}</td>
-
-          <!-- ⭐ ALTERADO: wishlist agora vira lista -->
           <td>${formatWishlist(e.wishlist||'')}</td>
-
           <td>${escapeHtml((e.notes||'').replace(/\n/g,'<br>'))}</td>
-
           <td>
             <button data-i="${i}" class="editBtn">Editar</button>
             <button data-i="${i}" class="delBtn">Apagar</button>
@@ -241,6 +233,7 @@
       renderTable();
       clearForm();
 
+      // ENVIO PARA GOOGLE SHEETS
       if(WEBHOOK_URL){
         try{
           await fetch(WEBHOOK_URL,{
@@ -253,9 +246,6 @@
     });
 
     document.getElementById('clearForm').addEventListener('click',clearForm);
-
-    // ❌ REMOVIDO – função clearAll
-    // document.getElementById('clearAll').addEventListener...
 
     document.getElementById('exportCsv').addEventListener('click',()=>{
       const entries=readEntries();
