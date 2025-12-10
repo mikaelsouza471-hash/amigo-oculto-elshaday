@@ -4,30 +4,165 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amigo Oculto do El-Shaday — Cadastro de Participantes</title>
-    <!-- Adicione CSS se quiser estilizar (ex: via link ou style tag) -->
+    <!-- CSS aprimorado para layout moderno, fluido e harmônico -->
     <style>
-        /* Estilo básico opcional */
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        form { max-width: 600px; }
-        label { display: block; margin-top: 10px; }
-        input, select, textarea { width: 100%; padding: 8px; margin-top: 5px; }
-        button { margin-top: 10px; padding: 10px; }
+        /* Reset básico e fontes */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7fa; /* Fundo claro e neutro */
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        /* Cabeçalho da landing page */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #4CAF50, #2196F3); /* Cores harmônicas: verde e azul para um tema fresco e festivo */
+            color: white;
+            width: 100%;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-size: 1.2em;
+        }
+        /* Formulário */
+        form {
+            max-width: 600px;
+            width: 100%;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease; /* Animação dinâmica */
+        }
+        form:hover {
+            transform: translateY(-5px); /* Efeito hover dinâmico */
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #555;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: #2196F3; /* Destaque azul harmônico */
+            outline: none;
+        }
+        /* Botões intuitivos e bonitos */
+        button {
+            padding: 12px 20px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        button[type="submit"] {
+            background-color: #4CAF50; /* Verde principal */
+            color: white;
+            margin-right: 10px;
+        }
+        button[type="submit"]:hover {
+            background-color: #388E3C;
+            transform: scale(1.05);
+        }
+        button[type="reset"] {
+            background-color: #FFC107; /* Amarelo para limpar, intuitivo */
+            color: #333;
+        }
+        button[type="reset"]:hover {
+            background-color: #FFB300;
+            transform: scale(1.05);
+        }
+        button#exportCsv {
+            background-color: #2196F3; /* Azul para exportar */
+            color: white;
+        }
+        button#exportCsv:hover {
+            background-color: #1976D2;
+            transform: scale(1.05);
+        }
+        /* Seção de status e inscritos */
+        #status {
+            margin-top: 20px;
+            font-style: italic;
+            color: #777;
+        }
+        #inscritos {
+            margin-top: 30px;
+            width: 100%;
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+        #inscritos ul {
+            list-style-type: none;
+        }
+        #inscritos li {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        #inscritos li:last-child {
+            border-bottom: none;
+        }
+        /* Responsividade fluida */
+        @media (max-width: 600px) {
+            header {
+                padding: 30px 15px;
+            }
+            form {
+                padding: 20px;
+            }
+            button {
+                width: 100%;
+                margin: 10px 0 0;
+            }
+        }
     </style>
 </head>
 <body>
-    <h1>Amigo Oculto do El-Shaday — Cadastro de Participantes</h1>
-    <p>Preencha os dados abaixo...</p>
+    <!-- Cabeçalho da landing page -->
+    <header>
+        <h1>Amigo Oculto do El-Shaday</h1>
+        <p>Cadastro de Participantes — Preencha os dados abaixo para participar!</p>
+    </header>
 
+    <!-- Formulário -->
     <form method="POST" action="https://script.google.com/macros/s/AKfycbwnoDovgUlIqu2fGxQ-Jxt1MLN1to55yo2WpSOjO2UHFY0PN_vTQVSAAz6T4IJL2MzK/exec" id="cadastroForm">
         <label for="nome">Nome *</label>
         <input type="text" id="nome" name="nome" required>
-
         <label for="email">E-mail (opcional)</label>
         <input type="email" id="email" name="email">
-
         <label for="shoe">Tamanho do calçado</label>
         <input type="text" id="shoe" name="shoe">
-
         <label for="size">Tamanho de roupa</label>
         <select id="size" name="size">
             <option value="">-- escolha --</option>
@@ -38,13 +173,10 @@
             <option value="GG">GG</option>
             <option value="Único/One size">Único/One size</option>
         </select>
-
         <label for="wishlist">Sugestões de presentes (um por linha)</label>
         <textarea id="wishlist" name="wishlist" rows="5"></textarea>
-
         <label for="notes">Observações</label>
         <textarea id="notes" name="notes" rows="3"></textarea>
-
         <button type="submit">Salvar inscrição</button>
         <button type="reset">Limpar formulário</button>
         <button type="button" id="exportCsv">Exportar CSV</button>
@@ -55,7 +187,7 @@
     <h2>Inscritos</h2>
     <div id="inscritos">Nenhuma inscrição ainda.</div>
 
-    <!-- JavaScript para localStorage, export CSV e envio via fetch -->
+    <!-- JavaScript (mantido, com correção implícita para reset - type="reset" funciona nativamente) -->
     <script>
         const form = document.getElementById('cadastroForm');
         const status = document.getElementById('status');
@@ -81,7 +213,6 @@
             event.preventDefault();
             const formData = new FormData(this);
             const dataObj = Object.fromEntries(formData.entries());
-
             fetch(this.action, {
                 method: 'POST',
                 body: formData
